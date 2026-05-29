@@ -1,0 +1,1029 @@
+/* ============================================================
+   Tennis Court Reservation Pro – Frontend Styles  v5.1.0
+   Theme: Sportlich & farbig (grün/blau Tennis-Feeling)
+   CI-Farben werden als CSS-Custom-Properties vom PHP-Backend
+   auf #tnp-app gesetzt und hier aufgegriffen.
+   ============================================================ */
+
+/* ── Base variables ────────────────────────────────────────── */
+.tnp-wrap {
+    /* Fallback-Werte – werden durch PHP-Inline-Style auf #tnp-app überschrieben */
+    --tnp-ci-topbar-bg    : #1b5e20;
+    --tnp-ci-topbar-bg2   : #0d47a1;
+    --tnp-ci-topbar-text  : #ffffff;
+    --tnp-ci-primary      : #2e7d32;
+    --tnp-ci-datebar-bg   : #388e3c;
+    --tnp-ci-datebar-bg2  : #1565c0;
+    --tnp-ci-datebar-text : #ffffff;
+    --tnp-ci-font         : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Abgeleitete semantische Variablen */
+    --tnp-green-dark  : #1b5e20;
+    --tnp-green       : var(--tnp-ci-primary);
+    --tnp-green-mid   : color-mix(in srgb, var(--tnp-ci-primary) 80%, white);
+    --tnp-green-light : #a5d6a7;
+    --tnp-green-pale  : #e8f5e9;
+    --tnp-blue-dark   : #0d47a1;
+    --tnp-blue        : #1565c0;
+    --tnp-blue-light  : #90caf9;
+    --tnp-blue-pale   : #e3f2fd;
+    --tnp-accent      : #00897b;
+    --tnp-danger      : #c62828;
+    --tnp-white       : #ffffff;
+    --tnp-gray-100    : #f5f5f5;
+    --tnp-gray-200    : #eeeeee;
+    --tnp-gray-400    : #bdbdbd;
+    --tnp-gray-700    : #616161;
+    --tnp-gray-900    : #212121;
+    --tnp-radius      : 10px;
+    --tnp-radius-sm   : 6px;
+    --tnp-shadow      : 0 2px 12px rgba(0,0,0,.12);
+    --tnp-shadow-lg   : 0 8px 40px rgba(0,0,0,.22);
+    --tnp-font        : var(--tnp-ci-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+
+    font-family : var(--tnp-font);
+    color       : var(--tnp-gray-900);
+    line-height : 1.5;
+}
+
+/* ── Top bar ───────────────────────────────────────────────── */
+.tnp-topbar {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    flex-wrap       : wrap;
+    gap             : 8px;
+    background      : linear-gradient(135deg, var(--tnp-ci-topbar-bg) 0%, var(--tnp-ci-topbar-bg2) 100%);
+    color           : var(--tnp-ci-topbar-text);
+    padding         : 12px 20px;
+    border-radius   : var(--tnp-radius) var(--tnp-radius) 0 0;
+    box-shadow      : var(--tnp-shadow);
+}
+
+.tnp-logo {
+    font-size   : 1.15rem;
+    font-weight : 700;
+    letter-spacing: .3px;
+}
+
+.tnp-topbar__right {
+    display    : flex;
+    align-items: center;
+    gap        : 8px;
+    flex-wrap  : wrap;
+}
+
+.tnp-user {
+    font-size  : .88rem;
+    opacity    : .85;
+}
+
+/* Button-Label – auf Mobile ausgeblendet */
+.tnp-btn-label { display: inline; }
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.tnp-btn {
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    gap             : 5px;
+    padding         : 7px 16px;
+    border-radius   : var(--tnp-radius-sm);
+    font-family     : var(--tnp-font);
+    font-size       : .88rem;
+    font-weight     : 600;
+    cursor          : pointer;
+    text-decoration : none;
+    border          : 2px solid transparent;
+    transition      : background .15s, color .15s, border-color .15s, opacity .15s, transform .1s;
+    white-space     : nowrap;
+}
+.tnp-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.tnp-btn--primary {
+    background : var(--tnp-ci-primary);
+    color      : var(--tnp-white);
+}
+.tnp-btn--primary:hover {
+    background : color-mix(in srgb, var(--tnp-ci-primary) 80%, black);
+    color      : var(--tnp-white);
+}
+
+.tnp-btn--outline {
+    background    : transparent;
+    border-color  : rgba(255,255,255,.55);
+    color         : var(--tnp-white);
+}
+.tnp-btn--outline:hover { border-color: var(--tnp-white); }
+
+.tnp-btn--accent {
+    background : var(--tnp-accent);
+    color      : var(--tnp-white);
+}
+.tnp-btn--accent:hover { filter: brightness(1.1); }
+
+.tnp-btn--danger {
+    background : var(--tnp-danger);
+    color      : var(--tnp-white);
+}
+.tnp-btn--danger:hover { filter: brightness(1.1); }
+
+.tnp-btn--sm  { padding: 5px 12px; font-size: .82rem; }
+.tnp-btn--nav {
+    background    : rgba(255,255,255,.18);
+    border-color  : rgba(255,255,255,.3);
+    color         : var(--tnp-white);
+    font-size     : 1.2rem;
+    padding       : 4px 12px;
+    border-radius : var(--tnp-radius-sm);
+    text-decoration: none;
+}
+.tnp-btn--nav:hover { background: rgba(255,255,255,.3); }
+
+.tnp-btn--block { width: 100%; margin-top: 8px; }
+
+/* Loading state */
+.tnp-btn--loading {
+    opacity : .7;
+    pointer-events: none;
+    position: relative;
+}
+
+/* ── Date bar ──────────────────────────────────────────────── */
+.tnp-datebar {
+    display     : flex;
+    align-items : center;
+    gap         : 8px;
+    flex-wrap   : wrap;
+    background  : linear-gradient(135deg, var(--tnp-ci-datebar-bg) 0%, var(--tnp-ci-datebar-bg2) 100%);
+    padding     : 10px 20px;
+    color       : var(--tnp-ci-datebar-text);
+}
+
+/* Buttons & nav arrows inside the datebar inherit the datebar text colour */
+.tnp-datebar .tnp-btn--outline {
+    border-color : rgba(255,255,255,.5);
+    color        : var(--tnp-ci-datebar-text);
+}
+.tnp-datebar .tnp-btn--nav {
+    color : var(--tnp-ci-datebar-text);
+}
+.tnp-datebar .tnp-datepicker {
+    color : var(--tnp-ci-datebar-text);
+}
+.tnp-datebar .tnp-datebar__label {
+    color : var(--tnp-ci-datebar-text);
+}
+.tnp-datebar .tnp-datebar__sep {
+    color : rgba(255,255,255,.4);
+}
+
+.tnp-datepicker-form { display: flex; }
+
+.tnp-datepicker {
+    background  : rgba(255,255,255,.18);
+    border      : 1px solid rgba(255,255,255,.4);
+    border-radius: var(--tnp-radius-sm);
+    color       : var(--tnp-white);
+    padding     : 5px 10px;
+    font-size   : .92rem;
+    cursor      : pointer;
+}
+.tnp-datepicker::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+
+.tnp-datebar__label {
+    font-weight : 600;
+    font-size   : .95rem;
+    margin-left : 4px;
+    flex        : 1;
+    white-space : nowrap;
+}
+
+.tnp-datebar__sep {
+    color   : rgba(255,255,255,.35);
+    padding : 0 2px;
+    align-self: center;
+}
+
+/* ── Legend (collapsible) ──────────────────────────────────── */
+.tnp-legend-wrap {
+    background  : var(--tnp-gray-100);
+    border-top  : 1px solid var(--tnp-gray-200);
+    border-bottom: 1px solid var(--tnp-gray-200);
+}
+
+/* Toggle-header (the <summary> element) */
+.tnp-legend-toggle {
+    display         : flex;
+    align-items     : center;
+    gap             : 6px;
+    padding         : 7px 20px;
+    cursor          : pointer;
+    font-size       : .82rem;
+    font-weight     : 600;
+    color           : var(--tnp-gray-700);
+    list-style      : none;  /* remove default triangle in Firefox */
+    user-select     : none;
+}
+.tnp-legend-toggle::-webkit-details-marker { display: none; } /* Chrome/Safari */
+
+.tnp-legend-toggle__arrow {
+    display    : inline-block;
+    width      : 0;
+    height     : 0;
+    border-left  : 5px solid transparent;
+    border-right : 5px solid transparent;
+    border-top   : 6px solid var(--tnp-gray-700);
+    transition   : transform .2s;
+    margin-left  : 2px;
+}
+.tnp-legend-wrap:not([open]) .tnp-legend-toggle__arrow {
+    transform: rotate(-90deg);
+}
+
+.tnp-legend {
+    display     : flex;
+    align-items : center;
+    gap         : 8px;
+    flex-wrap   : wrap;
+    padding     : 8px 20px 12px;
+}
+
+.tnp-legend__item {
+    padding       : 3px 10px;
+    border-radius : 20px;
+    font-size     : .8rem;
+    font-weight   : 600;
+}
+
+.tnp-legend--free {
+    background : var(--tnp-gray-200);
+    color      : var(--tnp-gray-700);
+}
+
+.tnp-legend--blocked {
+    background : #e8e8e8;
+    color      : #555;
+}
+
+/* ── Grid ──────────────────────────────────────────────────── */
+.tnp-grid-wrap {
+    overflow-x : auto;
+    background : var(--tnp-white);
+    border-radius: 0 0 var(--tnp-radius) var(--tnp-radius);
+    box-shadow : var(--tnp-shadow);
+    -webkit-overflow-scrolling: touch;
+}
+
+.tnp-grid {
+    width           : 100%;
+    border-collapse : collapse;
+    table-layout    : fixed;
+    min-width       : 400px;
+}
+
+.tnp-grid__time-head,
+.tnp-grid__court-head {
+    background    : var(--tnp-green-dark);
+    color         : var(--tnp-white);
+    padding       : 10px 12px;
+    font-size     : .85rem;
+    font-weight   : 700;
+    text-align    : center;
+    letter-spacing: .3px;
+    position      : sticky;
+    top            : 0;
+    z-index        : 3;
+}
+
+.tnp-grid__time-head {
+    background  : var(--tnp-blue-dark);
+    width       : 72px;
+    min-width   : 72px;
+    white-space : nowrap;
+    /* Sticky: fixiert links UND oben (corner cell) */
+    left        : 0;
+    z-index     : 4;
+}
+
+.tnp-grid__court-head { z-index: 3; }
+
+/* Heute-Spalte in Wochenansicht */
+.tnp-grid__court-head.tnp-today {
+    outline        : 3px solid rgba(255,255,255,.6);
+    outline-offset : -3px;
+    font-style     : italic;
+}
+
+.tnp-grid__time {
+    padding     : 6px 10px;
+    font-size   : .82rem;
+    font-weight : 600;
+    color       : var(--tnp-white);
+    text-align  : center;
+    white-space : nowrap;
+    background  : var(--tnp-blue);
+    border-right: 2px solid var(--tnp-blue-dark);
+    /* Sticky: Zeitspalte bleibt beim horizontalen Scrollen sichtbar */
+    position    : sticky;
+    left        : 0;
+    z-index     : 1;
+}
+
+.tnp-grid__row:nth-child(even) .tnp-grid__time {
+    background: var(--tnp-blue-dark);
+}
+
+/* Heute-Spalte Zellen */
+.tnp-today-col {
+    outline        : 1px solid rgba(255,215,0,.35);
+    outline-offset : -1px;
+    background-image: linear-gradient(rgba(255,235,59,.04), rgba(255,235,59,.04));
+}
+
+/* Slots */
+.tnp-slot {
+    padding       : 6px 8px;
+    text-align    : center;
+    vertical-align: middle;
+    font-size     : .82rem;
+    border        : 1px solid var(--tnp-gray-200);
+    min-height    : 42px;
+    transition    : filter .12s, transform .12s, background .12s;
+    position      : relative;
+}
+
+.tnp-slot--free {
+    background : var(--tnp-gray-100);
+    color      : var(--tnp-gray-400);
+}
+
+.tnp-slot--bookable {
+    cursor: pointer;
+}
+.tnp-slot--bookable:hover {
+    background : var(--tnp-green-pale) !important;
+    color      : var(--tnp-green-dark) !important;
+    filter     : none;
+    transform  : scale(1.015);
+    z-index    : 2;
+}
+.tnp-slot--bookable:hover .tnp-slot__free {
+    color      : var(--tnp-green);
+    font-size  : 1.5rem;
+    font-weight: 700;
+}
+
+.tnp-slot--booked {
+    cursor: default;
+}
+
+.tnp-slot--editable {
+    cursor: pointer;
+}
+.tnp-slot--editable:hover {
+    filter   : brightness(.92);
+    transform: scale(1.01);
+    z-index  : 2;
+}
+
+.tnp-slot__time {
+    display    : block;
+    font-size  : .7rem;
+    opacity    : .75;
+    margin-bottom: 1px;
+    letter-spacing: .01em;
+}
+
+.tnp-slot__label {
+    display    : block;
+    font-weight: 700;
+    font-size  : .82rem;
+    line-height: 1.3;
+}
+
+.tnp-slot__cat {
+    display    : block;
+    font-size  : .72rem;
+    opacity    : .8;
+    margin-top : 2px;
+}
+
+.tnp-slot__trainer {
+    display    : block;
+    font-size  : .72rem;
+    opacity    : .85;
+    margin-top : 2px;
+    font-style : italic;
+}
+
+.tnp-slot__free {
+    font-size  : 1.2rem;
+    transition : font-size .12s;
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
+.tnp-empty {
+    padding     : 40px;
+    text-align  : center;
+    color       : var(--tnp-gray-700);
+    background  : var(--tnp-white);
+    border-radius: 0 0 var(--tnp-radius) var(--tnp-radius);
+    font-size   : 1rem;
+}
+
+/* ── Popup ─────────────────────────────────────────────────── */
+.tnp-popup {
+    position : fixed;
+    inset    : 0;
+    z-index  : 99999;
+    display  : flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tnp-popup[hidden] { display: none; }
+
+.tnp-popup__backdrop {
+    position   : absolute;
+    inset      : 0;
+    background : rgba(0,0,0,.45);
+    backdrop-filter: blur(3px);
+}
+
+.tnp-popup__box {
+    position      : relative;
+    z-index       : 1;
+    background    : var(--tnp-white);
+    border-radius : var(--tnp-radius);
+    box-shadow    : var(--tnp-shadow-lg);
+    padding       : 32px 28px 24px;
+    width         : 100%;
+    max-width     : 400px;
+    margin        : 16px;
+    animation     : tnpPopIn .18s ease;
+    max-height    : 92vh;
+    overflow-y    : auto;
+}
+
+@keyframes tnpPopIn {
+    from { opacity: 0; transform: scale(.93) translateY(12px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes tnpSlideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+
+.tnp-popup__close {
+    position    : absolute;
+    top         : 12px;
+    right       : 14px;
+    background  : none;
+    border      : none;
+    font-size   : 1.1rem;
+    cursor      : pointer;
+    color       : var(--tnp-gray-700);
+    line-height : 1;
+    padding     : 4px 6px;
+    border-radius: 4px;
+    z-index     : 2;
+}
+.tnp-popup__close:hover { background: var(--tnp-gray-200); }
+
+.tnp-popup__icon {
+    font-size  : 2.4rem;
+    text-align : center;
+    margin-bottom: 8px;
+}
+
+.tnp-popup__box h3 {
+    margin      : 0 0 8px;
+    font-size   : 1.15rem;
+    font-weight : 700;
+    text-align  : center;
+    color       : var(--tnp-gray-900);
+}
+
+.tnp-popup__box p {
+    color     : var(--tnp-gray-700);
+    font-size : .9rem;
+    text-align: center;
+    margin    : 0 0 16px;
+}
+
+.tnp-popup__meta {
+    color       : var(--tnp-green-dark) !important;
+    font-weight : 700 !important;
+    font-size   : .95rem !important;
+    margin-bottom: 18px !important;
+}
+
+/* Fields */
+.tnp-field {
+    display       : flex;
+    flex-direction: column;
+    gap           : 5px;
+    margin-bottom : 14px;
+}
+
+.tnp-field span {
+    font-size  : .82rem;
+    font-weight: 600;
+    color      : var(--tnp-gray-700);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.tnp-field select,
+.tnp-field input[type="text"],
+.tnp-field input[type="date"] {
+    padding      : 9px 12px;
+    border       : 2px solid var(--tnp-gray-200);
+    border-radius: var(--tnp-radius-sm);
+    font-family  : var(--tnp-font);
+    font-size    : .92rem;
+    color        : var(--tnp-gray-900);
+    background   : var(--tnp-white);
+    transition   : border-color .15s;
+    width        : 100%;
+    box-sizing   : border-box;
+}
+.tnp-field select:focus,
+.tnp-field input[type="text"]:focus,
+.tnp-field input[type="date"]:focus {
+    outline      : none;
+    border-color : var(--tnp-green);
+}
+
+/* Actions */
+.tnp-popup__actions {
+    display       : flex;
+    flex-direction: column;
+    gap           : 8px;
+    margin-top    : 18px;
+}
+.tnp-popup__actions .tnp-btn {
+    width         : 100%;
+    padding       : 11px;
+    font-size     : .92rem;
+}
+
+/* Override outline buttons inside popup */
+.tnp-popup__box .tnp-btn--outline {
+    border-color : var(--tnp-gray-400);
+    color        : var(--tnp-gray-700);
+    background   : transparent;
+}
+.tnp-popup__box .tnp-btn--outline:hover {
+    border-color : var(--tnp-gray-700);
+    color        : var(--tnp-gray-900);
+}
+
+/* Error / Message */
+.tnp-error {
+    color       : var(--tnp-danger);
+    font-size   : .85rem;
+    text-align  : center;
+    margin-top  : 10px;
+    font-weight : 600;
+}
+.tnp-error[hidden] { display: none; }
+
+.tnp-msg[hidden] { display: none; }
+
+/* ── My Bookings ───────────────────────────────────────────── */
+.tnp-my-bookings__header {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    margin-bottom   : 14px;
+    flex-wrap       : wrap;
+    gap             : 8px;
+}
+.tnp-my-bookings__header h3 {
+    margin  : 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color   : var(--tnp-gray-900);
+}
+
+.tnp-booking-card {
+    display       : flex;
+    align-items   : center;
+    flex-wrap     : wrap;
+    gap           : 6px;
+    padding       : 12px 16px;
+    margin-bottom : 8px;
+    background    : var(--tnp-gray-100);
+    border-radius : 0 var(--tnp-radius-sm) var(--tnp-radius-sm) 0;
+    font-size     : .9rem;
+    border-left   : 4px solid var(--tnp-green);
+    line-height   : 1.4;
+}
+
+.tnp-booking-card__date {
+    font-weight : 700;
+    color       : var(--tnp-gray-900);
+}
+
+.tnp-booking-card__sep {
+    color   : var(--tnp-gray-400);
+    padding : 0 2px;
+}
+
+.tnp-booking-card__badge {
+    display       : inline-flex;
+    align-items   : center;
+    padding       : 2px 8px;
+    border-radius : 20px;
+    font-size     : .75rem;
+    font-weight   : 700;
+}
+
+.tnp-booking-card__series {
+    font-size : .75rem;
+    color     : var(--tnp-gray-400);
+}
+
+.tnp-waitlist-card {
+    display       : flex;
+    align-items   : center;
+    flex-wrap     : wrap;
+    gap           : 6px;
+    padding       : 12px 16px;
+    margin-bottom : 8px;
+    background    : #fffde7;
+    border-radius : 0 var(--tnp-radius-sm) var(--tnp-radius-sm) 0;
+    font-size     : .9rem;
+    border-left   : 4px solid #f9a825;
+}
+
+.tnp-waitlist-badge {
+    display       : inline-flex;
+    align-items   : center;
+    background    : #f9a825;
+    color         : #fff;
+    padding       : 2px 8px;
+    border-radius : 20px;
+    font-size     : .75rem;
+    font-weight   : 700;
+}
+
+.tnp-my-bookings__hint {
+    font-size  : .8rem;
+    color      : var(--tnp-gray-400);
+    margin-top : 4px;
+}
+
+.tnp-section-title {
+    margin    : 20px 0 10px;
+    font-size : 1rem;
+    font-weight: 700;
+    color     : var(--tnp-gray-700);
+}
+
+/* ── Accordion (Meine Buchungen) ───────────────────────────────────────── */
+.tnp-acc {
+    border        : 1px solid var(--tnp-gray-200);
+    border-radius : var(--tnp-radius-sm);
+    margin-bottom : 6px;
+    overflow      : hidden;
+    background    : var(--tnp-white);
+}
+
+.tnp-acc--main {
+    border-color  : var(--tnp-green-light);
+    box-shadow    : var(--tnp-shadow);
+    margin-bottom : 0;
+}
+
+.tnp-acc__summary {
+    display         : flex;
+    align-items     : center;
+    gap             : 8px;
+    padding         : 12px 16px;
+    cursor          : pointer;
+    list-style      : none;
+    user-select     : none;
+    background      : var(--tnp-gray-100);
+    transition      : background .15s;
+}
+.tnp-acc__summary::-webkit-details-marker { display: none; }
+.tnp-acc__summary:hover { background: var(--tnp-green-pale); }
+
+.tnp-acc--main > .tnp-acc__summary {
+    background    : linear-gradient(135deg, var(--tnp-green-dark) 0%, var(--tnp-blue-dark) 100%);
+    color         : var(--tnp-white);
+    padding       : 14px 18px;
+    font-size     : 1rem;
+    font-weight   : 700;
+}
+.tnp-acc--main > .tnp-acc__summary:hover {
+    background    : linear-gradient(135deg, var(--tnp-green-mid) 0%, var(--tnp-blue) 100%);
+}
+
+.tnp-acc__title {
+    flex    : 1;
+    font-weight: 600;
+}
+
+.tnp-acc__badge {
+    display       : inline-flex;
+    align-items   : center;
+    justify-content: center;
+    background    : var(--tnp-green);
+    color         : var(--tnp-white);
+    border-radius : 20px;
+    font-size     : .75rem;
+    font-weight   : 700;
+    padding       : 2px 8px;
+    min-width     : 22px;
+}
+.tnp-acc--main > .tnp-acc__summary .tnp-acc__badge {
+    background: rgba(255,255,255,.25);
+}
+.tnp-acc__badge--sm    { padding: 1px 6px; font-size: .7rem; }
+.tnp-acc__badge--warn  { background: #f9a825; }
+
+/* Chevron arrow – rotates when open */
+.tnp-acc__chevron {
+    display       : inline-block;
+    width         : 10px;
+    height        : 10px;
+    border-right  : 2px solid currentColor;
+    border-bottom : 2px solid currentColor;
+    transform     : rotate(-45deg);
+    transition    : transform .2s;
+    opacity       : .7;
+    flex-shrink   : 0;
+}
+details[open] > .tnp-acc__summary .tnp-acc__chevron {
+    transform: rotate(45deg);
+}
+
+/* Body */
+.tnp-acc__body {
+    padding: 12px 14px 6px;
+}
+.tnp-acc--main > .tnp-acc__body {
+    padding: 14px;
+}
+
+/* Toolbar (iCal button row) */
+.tnp-my-bookings__toolbar {
+    display        : flex;
+    align-items    : center;
+    gap            : 8px;
+    margin-bottom  : 12px;
+    flex-wrap      : wrap;
+}
+
+.tnp-my-bookings__empty {
+    color     : var(--tnp-gray-700);
+    font-size : .9rem;
+    margin    : 4px 0 12px;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+    /* Topbar: Benutzername verstecken, Labels in Buttons ausblenden */
+    .tnp-topbar  { padding: 10px 14px; gap: 6px; }
+    .tnp-user    { display: none; }
+    .tnp-btn-label { display: none; }
+    .tnp-logo    { font-size: 1rem; }
+
+    /* Datebar: Navigation kompakt, Label rutscht in neue Zeile */
+    .tnp-datebar { padding: 8px 12px; gap: 6px; }
+    .tnp-datebar__label {
+        order      : 10;
+        width      : 100%;
+        font-size  : .85rem;
+        margin-left: 0;
+        text-align : center;
+        padding    : 2px 0 0;
+    }
+    .tnp-datebar__sep { display: none; }
+
+    /* Fix: border-collapse:separate verhindert das iOS/Safari-Sticky-Overlap-Bug */
+    .tnp-grid {
+        border-collapse : separate !important;
+        border-spacing  : 0 !important;
+    }
+
+    /* Zeitspalte: sauber zentriert, hoher z-index schlägt alle Nachbarzellen */
+    .tnp-grid__time-head {
+        width     : 52px !important;
+        min-width : 52px !important;
+        padding   : 8px 4px !important;
+        font-size : .74rem;
+        text-align: center !important;
+        z-index   : 5 !important;
+    }
+    .tnp-grid__time {
+        padding      : 4px 2px !important;
+        font-size    : .72rem;
+        font-weight  : 600;
+        text-align   : center !important;
+        overflow     : hidden !important;
+        z-index      : 3 !important;
+        box-shadow   : 2px 0 3px rgba(0,0,0,.18);
+    }
+
+    /* Freie Slots: "+" zentriert, kein Padding */
+    .tnp-slot--free {
+        padding        : 0 !important;
+        min-height     : 34px !important;
+        vertical-align : middle !important;
+    }
+
+    /* Gebuchte / gesperrte Slots: Inhalt oben anliegend, minimaler Rand */
+    .tnp-slot--booked,
+    .tnp-slot--blocked {
+        padding        : 3px 3px !important;
+        vertical-align : top !important;
+    }
+
+    /* Popup → Bottom Sheet */
+    .tnp-popup {
+        align-items : flex-end;
+    }
+    .tnp-popup__box {
+        margin        : 0;
+        max-width     : 100%;
+        width         : 100%;
+        border-radius : 18px 18px 0 0;
+        padding       : 28px 20px 32px;
+        max-height    : 92vh;
+        animation     : tnpSlideUp .22s cubic-bezier(.32,.72,0,1);
+    }
+    /* Zieh-Indikator für Bottom Sheet */
+    .tnp-popup__box::before {
+        content       : '';
+        display       : block;
+        width         : 40px;
+        height        : 4px;
+        border-radius : 2px;
+        background    : var(--tnp-gray-200);
+        margin        : -12px auto 16px;
+    }
+
+    /* Legend */
+    .tnp-legend-toggle { padding: 6px 12px; }
+    .tnp-legend { padding: 6px 12px 10px; }
+
+    /* My Bookings Cards */
+    .tnp-booking-card,
+    .tnp-waitlist-card { font-size: .85rem; padding: 10px 12px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   REGISTRIERUNG & PROFIL FORMULARE
+   Funktionieren unabhängig von #tnp-app (eigene Seiten via Shortcode)
+══════════════════════════════════════════════════════════════════════════ */
+
+.tnp-form-wrap {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: inherit;
+}
+
+.tnp-form__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 1.2rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid #2e7d32;
+    color: #1b5e20;
+}
+
+.tnp-form-notice {
+    padding: .75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: .95rem;
+    line-height: 1.4;
+}
+.tnp-form-notice--success { background: #e8f5e9; border: 1px solid #a5d6a7; color: #1b5e20; }
+.tnp-form-notice--error   { background: #ffebee; border: 1px solid #ef9a9a; color: #b71c1c; }
+.tnp-form-notice--info    { background: #e3f2fd; border: 1px solid #90caf9; color: #0d47a1; }
+
+.tnp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tnp-form__row { display: flex; gap: 1rem; }
+.tnp-form__row--half > .tnp-form__field { flex: 1 1 0; min-width: 0; }
+
+.tnp-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.tnp-form__field label {
+    font-size: .875rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.tnp-form__field input[type="text"],
+.tnp-form__field input[type="email"],
+.tnp-form__field input[type="tel"],
+.tnp-form__field input[type="password"] {
+    padding: .55rem .75rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: .95rem;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+    width: 100%;
+    box-sizing: border-box;
+}
+.tnp-form__field input:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46,125,50,.15);
+}
+
+.tnp-form__fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem 1.25rem 1.25rem;
+    margin: 0;
+}
+.tnp-form__fieldset legend {
+    font-size: .9rem;
+    font-weight: 700;
+    color: #444;
+    padding: 0 .5rem;
+}
+
+.tnp-form__submit {
+    align-self: flex-start;
+    padding: .65rem 1.5rem;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+.tnp-form__submit:hover  { background: #1b5e20; }
+.tnp-form__submit:active { transform: scale(.97); }
+
+.tnp-form__hint {
+    font-size: .8rem;
+    color: #777;
+    margin: 0;
+}
+
+.tnp-req { color: #c62828; }
+
+/* Honeypot – vollständig verstecken */
+.tnp-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Privacy checkbox row */
+.tnp-form__field--check {
+    margin-top: 4px;
+}
+
+.tnp-form__check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.tnp-form__check-label input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--tnp-primary, #2e7d32);
+}
+
+.tnp-form__check-label a {
+    color: var(--tnp-primary, #2e7d32);
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .tnp-form__row--half { flex-direction: column; }
+}
